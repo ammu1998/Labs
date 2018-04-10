@@ -9,8 +9,8 @@ str2:	.asciz	"\nzing[5] now has "
 	.text
 
 main:	
-	la	a0, zing	#address of zing array
-	li	a1, 4
+	la	a7, zing	#address of zing array
+	li	a0, 4
 	jal	swap
 	
 	li	a7, 4		#system call for printing a string
@@ -46,6 +46,9 @@ swap:
 				
 	sw		t2, 0(t1)	
 	sw		t0, 4(t1)	
+	addi t4, zero, 5
+	addi t5, t4, 2
+	addi t6, t5, 5
 	ret		
 
 # END OF PROGRAM
