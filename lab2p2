@@ -1,0 +1,59 @@
+.data
+A: .word 10
+B: .word 15
+C: .word 6
+Z: .word 0
+
+.text
+
+main:
+lw x1,A
+lw x2,B
+lw x3,C
+lw x4,Z
+addi t3,x0,0
+addi t5,x0,5
+addi t6,x0,7
+
+slt x5,x1,x2
+slt x6,t5,x3
+and x7,x6,x5
+beq x7,x0,Exit1
+addi x4,x0,1
+j Exit3
+Exit1: 
+slt x5,x2,x1
+addi t1,x3,1 
+bne t1,t6,Exit2
+addi t3,x0,1
+Exit2:
+or t4,t3, x5
+beq t4,x0,DoIt
+addi x4,x0,2
+j Exit3
+DoIt:
+addi x4,x0,3
+Exit3: 
+
+addi t3,x0,1
+addi t4,x0,2
+addi t5,x0,3
+sub t6,x0,t3
+
+bne x4,t3,Exit4
+mul x4,x4,t6
+j Exit7
+Exit4: 
+bne x4,t4,Exit5
+mul x4,x4,t6
+j Exit7
+Exit5:
+bne x4,t5,Exit6
+mul x4,x4,t6
+j Exit7
+Exit6:
+addi x4,x0,0
+j Exit7
+Exit7:
+sw x4,Z,x8
+

@@ -1,0 +1,36 @@
+.data
+I: .word 0
+Z: .word 2
+
+.text
+
+main:
+lw x1,I
+lw x2,Z
+addi t1,x0,1
+sub t2,x0,t1
+
+while: 
+slti x13,x1,21
+beq x13 x0,Next
+addi x1,x1,2
+addi x2,x2,1
+j while
+
+Next: 
+addi x2,x2,1
+slti x14,x2,100
+beq x14,x0,Next2
+j Next
+
+Next2:
+slti x15,x1,1
+bne x15,x0,Exit
+add x2,x2,t2
+add x1,x1,t2
+j Next2
+
+
+Exit:
+sw x1,I,x8
+sw x2,Z,x9
