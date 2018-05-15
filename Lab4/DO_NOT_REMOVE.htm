@@ -1,0 +1,27 @@
+.data
+a: .word 0x01234567
+b: .word 0x11223344
+c: .word 0x10010001
+d: .word 0x01000001
+e: .word 0x11223346
+
+.text
+lw x1,a
+lw x2,b
+lw x3,c
+lw x4,d
+lw x5,e
+
+
+and x7,x1,x2
+add x8,x1,x2
+sub x9,x1,x2
+addi x10,x1,0x00000344
+andi x11,x1,0x00000344
+or x12,x1,x2
+ori x13,x1,0x000000344
+sll x14,x3,x4
+slli x15,x3,2
+addi x5,zero,2
+srl x16,x3,x5
+srli x17,x3,0
