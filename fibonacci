@@ -1,0 +1,51 @@
+.data
+
+a:  .word  0
+b:  .word  0
+c:  .word  0
+
+.text
+
+main:
+addi a1, x0, 3 	
+jal func 	 
+sw a2, a, t2	
+addi a1, x0, 10 
+jal func 	
+sw a2, b, t2
+addi a1, x0, 20 
+jal func 	
+sw a2, c, t2	
+li a7, 10
+ecall
+
+func:
+addi sp, sp, -12
+sw ra, 0(sp)	
+sw s0, 4(sp)	
+sw s1, 8(sp)
+addi t1, x0, 1	
+add s0, a1, x0	
+beq s0, x0, base0	
+beq s0, t1, base1
+addi a1, s0, -1	
+jal func
+addi a1, s0, -2
+add s1, x0, a2	
+jal func		
+add a2, a2, s1  
+
+base1:
+li a2, 1	
+j end
+
+base0 :     
+li a2, 0	
+j end
+
+end:
+lw ra, 0(sp)    
+lw s0, 4(sp)
+lw s1, 8(sp)
+addi sp, sp, 12	
+jr ra, 0
